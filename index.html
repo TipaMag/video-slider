@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Video-slider</title>
+</head>
+<body>
+    <section>
+        <video id='slider' autoplay='false' muted loop>
+            <source src="/video/video1.mp4" type='video/mp4'>
+        </video>
+        <nav class="controls">
+            <ul>
+                <li onclick="videoUrl('video1.mp4')"><img src="./video/thumbnails/thumbnail1.jpg" alt="thumbnail"></li>
+                <li onclick="videoUrl('video2.mp4')"><img src="./video/thumbnails/thumbnail2.jpg" alt="thumbnail"></li>
+                <li onclick="videoUrl('video3.mp4')">
+                    <video onmouseenter="mouseEnter(event)" onmouseleave="mouseLeave(event)" muted loop>
+                        <source src="/video/video3.mp4" type='video/mp4'>
+                    </video>
+                </li>
+                <li onclick="videoUrl('video4.mp4')">
+                    <video onmouseenter="mouseEnter(event)" onmouseleave="mouseLeave(event)" muted loop>
+                        <source src="/video/video4.mp4" type='video/mp4'>
+                    </video>
+                </li>
+            </ul>
+        </nav>
+    </section>
+
+    <script>
+        let slider = document.getElementById('slider')
+        let videoUrl = (videoName) => {
+            if (slider.getAttribute('src') === `/video/${videoName}`) return
+            slider.src = `/video/${videoName}`
+        };
+        let mouseEnter = (event) => {
+            event.target.autoplay = true;
+            event.target.load();
+        }
+        let mouseLeave = (event) => {
+            event.target.autoplay = false;
+            event.target.load();
+        }
+    </script>
+</body>
+</html>
